@@ -1,30 +1,30 @@
-var through = require('through-gulp');
-var gutil = require('gulp-util');
-var preprocessor = require('sourdough-preprocessor');
-var PluginError = gutil.PluginError;
+var through = require('through-gulp')
+var gutil = require('gulp-util')
+var rext = require('replace-ext')
+var preprocessor = require('sourdough-preprocessor')
+var PluginError = gutil.PluginError
 
-// Consts
-var PLUGIN_NAME = 'gulp-sourdough';
-
+var PLUGIN_NAME = 'gulp-sourdough'
 
 function sourdough(options) {
-    options = options || {};
+    options = options || {}
     return through(function (file, enc, cb) {
         if (file.isStream()) {
-            return cb(new PluginError(PLUGIN_NAME, 'Streaming not supported'));
+            return cb(new PluginError(PLUGIN_NAME, 'Streaming not supported'))
         }
         if (file.isBuffer()) {
             try {
-                file.contents = new Buffer(preprocessor(String(file.contents), options));
+                file.path = rext(file.path, '.css')
+                file.contents = new Buffer(preprocessor(String(file.contents), options))
             } catch (e) {
-                return cb(new PluginError(PLUGIN_NAME, e));
+                return cb(new PluginError(PLUGIN_NAME, e))
             }
         }
-        this.push(file);
-        cb();
+        this.push(file)
+        cb()
     }, function (cb) {
-        cb();
+        cb()
     });
 }
-// Exporting the plugin main function
-module.exports = sourdough;
+
+module.exports = sourdough
