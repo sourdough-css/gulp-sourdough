@@ -1,0 +1,22 @@
+{
+  "name": "gulp-sourdough",
+  "version": "0.1.0",
+  "description": "Gulp plugin for Sourdough preprocessor",
+  "main": "index.js",
+  "dependencies": {
+    "gulp-util": "^3.0.4",
+    "sourdough-preprocessor": "^0.4.0",
+    "through-gulp": "^0.3.8"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "keywords": [
+    "gulp",
+    "sourdough",
+    "preprocessor",
+    "postcss",
+    "css"
+  ],
+  "repository": "git://github.com/sourdough-css/gulp-sourdough.git",
+  "license": "MIT"
+}
