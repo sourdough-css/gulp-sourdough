@@ -9,6 +9,11 @@ var PLUGIN_NAME = 'gulp-sourdough'
 function sourdough(options) {
     options = options || {}
     return through(function (file, enc, cb) {
+
+        if (options.from === undefined) {
+          options.from = file.path
+        }
+
         if (file.isStream()) {
             return cb(new PluginError(PLUGIN_NAME, 'Streaming not supported'))
         }
