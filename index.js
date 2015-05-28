@@ -7,29 +7,33 @@ var PluginError = gutil.PluginError
 var PLUGIN_NAME = 'gulp-sourdough'
 
 function sourdough(options) {
-    options = options || {}
-    return through(function (file, enc, cb) {
+  options = options || {}
+  return through(function (file, enc, cb) {
 
-        if (options.from === undefined) {
-          options.from = file.path
-        }
+    if (options.from === undefined) {
+      options.from = file.path
+    }
 
-        if (file.isStream()) {
-            return cb(new PluginError(PLUGIN_NAME, 'Streaming not supported'))
-        }
-        if (file.isBuffer()) {
-            try {
-                file.path = rext(file.path, '.css')
-                file.contents = new Buffer(preprocessor(String(file.contents), options))
-            } catch (e) {
-                return cb(new PluginError(PLUGIN_NAME, e))
-            }
-        }
-        this.push(file)
-        cb()
-    }, function (cb) {
-        cb()
-    });
+    if (file.isStream()) {
+        return cb(new PluginError(PLUGIN_NAME, 'Streaming not supported'))
+    }
+    if (file.isBuffer()) {
+
+      file.path = rext(file.path, '.css')
+      preprocessor(String(file.contents), options)
+        .then(function(result) {
+          file.contents = new Buffer(result.css)
+          this.push(file)
+          cb()
+        })
+        .catch(function(e) {
+          return cb(new PluginError(PLUGIN_NAME, e))
+        })
+    }
+
+  }, function (cb) {
+      cb()
+  });
 }
 
 module.exports = sourdough
