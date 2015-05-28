@@ -9,7 +9,9 @@
     "sourdough-preprocessor": "^1.0.0",
     "through-gulp": "^0.3.8"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.11"
+  },
   "scripts": {},
   "keywords": [
     "gulp",

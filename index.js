@@ -18,18 +18,19 @@ function sourdough(options) {
         return cb(new PluginError(PLUGIN_NAME, 'Streaming not supported'))
     }
     if (file.isBuffer()) {
-
       file.path = rext(file.path, '.css')
+      var that = this
       preprocessor(String(file.contents), options)
         .then(function(result) {
           file.contents = new Buffer(result.css)
-          this.push(file)
+          that.push(file)
           cb()
         })
         .catch(function(e) {
           return cb(new PluginError(PLUGIN_NAME, e))
         })
     }
+
 
   }, function (cb) {
       cb()
