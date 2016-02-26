@@ -6,3 +6,9 @@ gulp.task('styl', function () {
     .pipe(sourdough())
     .pipe(gulp.dest('./'))
 })
+
+gulp.task('styl-err', function () {
+  return gulp.src('err.styl')
+    .pipe(sourdough())
+    .pipe(gulp.dest('./'))
+})
