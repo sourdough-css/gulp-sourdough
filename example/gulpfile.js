@@ -1,14 +1,14 @@
 var gulp = require('gulp')
 var sourdough = require('..')
 
-gulp.task('styl', function () {
-  return gulp.src('index.styl')
+gulp.task('test', function () {
+  return gulp.src('index.sss')
     .pipe(sourdough())
     .pipe(gulp.dest('./'))
 })
 
-gulp.task('styl-err', function () {
-  return gulp.src('err.styl')
+gulp.task('test-error', function () {
+  return gulp.src('err.sss')
     .pipe(sourdough())
     .pipe(gulp.dest('./'))
 })

@@ -13,6 +13,9 @@ function sourdough (options) {
     if (options.from === undefined) {
       options.from = file.path
     }
+    if (options.root === undefined) {
+      options.root = ''
+    }
 
     if (file.isStream()) {
       return cb(new PluginError(PLUGIN_NAME, 'Streaming not supported'))

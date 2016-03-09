@@ -1,12 +1,12 @@
 {
   "name": "gulp-sourdough",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Gulp plugin for Sourdough preprocessor",
   "main": "index.js",
   "dependencies": {
     "gulp-util": "^3.0.4",
     "replace-ext": "0.0.1",
-    "sourdough-preprocessor": "^1.1.0",
+    "sourdough-preprocessor": "^2.0.0",
     "through-gulp": "^0.3.8"
   },
   "devDependencies": {
